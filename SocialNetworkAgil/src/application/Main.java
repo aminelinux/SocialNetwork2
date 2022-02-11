@@ -1,5 +1,9 @@
 package application;
 	
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,10 +16,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 
 public class Main extends Application {
@@ -27,6 +33,7 @@ public class Main extends Application {
     	VBox vBox = new VBox();
     	VBox vBox1 = new VBox();
     	HBox hBox = new HBox();
+    	HBox hbox1 = new HBox();
     	BorderPane pane = new BorderPane();
     	Label labelApp = new Label();
         Button buttonLogin = new Button("Connect");
@@ -38,17 +45,33 @@ public class Main extends Application {
         Label passLabel = new Label("Password");
         TextField userText = new TextField();
         PasswordField passText = new PasswordField();
-        Image image = null;
+        InputStream stream = null;
         
+        final ImageView selectedImage = new ImageView();
+        try {
+			stream = new FileInputStream("C:\\Users\\Ce-PC\\Downloads\\output-onlinepngtools.png");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
         
+        Image image = new Image(stream);
+        selectedImage.setImage(image);
+        selectedImage.setFitWidth(360);
+        selectedImage.setFitHeight(360);
+        selectedImage.setPreserveRatio(true);
+        hbox1.setAlignment(Pos.CENTER);
+        HBox.setMargin(pane, new Insets(10,10,10,10));
+       
+        hbox1.getChildren().addAll(selectedImage);
         //-fx-border-color: #ff0000;-fx-border-width: 1px;
         buttonExit.setStyle("-fx-background-color: #e64e4e;-fx-text-fill: #fff0f0;");
         buttonSignIn.setStyle("-fx-background-color: #e64e4e;-fx-text-fill: #fff0f0;");
         
         
        // userNameLabel.setUnderline(true);
-        	
-        labelApp.setText("Sign In To app");
+       
+        
         //labelApp.setStyle();
         hBox.setSpacing(10);
         hBox.setPadding(new Insets(10,10,10,10));
@@ -65,11 +88,15 @@ public class Main extends Application {
         		userText,
                 passLabel,
                 passText,
-                buttonLogin,buttonExit);
+                buttonLogin,
+                buttonExit);
         
         //root.getChildren().addAll(vBox);
-        pane.setTop(labelApp);
-        pane.getChildren().addAll(vBox);
+        pane.setTop(hbox1);
+        pane.setCenter(vBox);
+        //pane.setBottom(buttonExit);
+        
+        
         root.getChildren().addAll(pane);
         buttonExit.setOnAction(new EventHandler<ActionEvent>() {
 
