@@ -49,7 +49,6 @@ public class Main extends Application {
         try {
 			stream = new FileInputStream("C:\\Users\\Ce-PC\\Downloads\\output-onlinepngtools.png");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	       
         Image image = new Image(stream);
@@ -71,7 +70,6 @@ public class Main extends Application {
         vBox.setPadding(new Insets(10,10,10,10));
         vBox.setAlignment(Pos.CENTER);
         vBox.getChildren().addAll(
-        		hBoxCenter,
         		userNameLabel,
         		userText,
                 passLabel,
@@ -81,6 +79,8 @@ public class Main extends Application {
         pane.setTop(hboxTop);
         pane.setCenter(vBox);
         root.getChildren().addAll(pane);
+        
+        
         buttonExit.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -97,6 +97,7 @@ public class Main extends Application {
         primaryStage.show();
         primaryStage.setTitle("Login");
         primaryStage.setAlwaysOnTop(true);
+        primaryStage.setResizable(false);
     }
     public static void main(String[] args) {
         launch(args);
