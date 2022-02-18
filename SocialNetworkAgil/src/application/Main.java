@@ -46,6 +46,7 @@ public class Main extends Application {
         HBox hboxTop = new HBox();
         HBox boxDown = new HBox();
         
+        
         //-fx-border-color: #ff0000;-fx-border-width: 1px;
         buttonExit.setStyle("-fx-background-color: #e64e4e;-fx-text-fill: #fff0f0;");
         buttonSignIn.setStyle("-fx-background-color: #e64e4e;-fx-text-fill: #fff0f0;");
@@ -104,6 +105,18 @@ public class Main extends Application {
 			}
         	
         });
+        buttonLogin.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				String user = userText.getText();
+				String pass = passText.getText();
+				Authentification auth = new Authentification(user,pass);
+			}
+        	
+        });
+        
 
         /*button.setOnAction(actionEvent-> {
             if(stage!=null){
