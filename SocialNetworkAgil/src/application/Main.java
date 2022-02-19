@@ -112,7 +112,12 @@ public class Main extends Application {
 				// TODO Auto-generated method stub
 				String user = userText.getText();
 				String pass = passText.getText();
-				Authentification auth = new Authentification(user,pass);
+				try {
+					Authentification auth = new Authentification(user,pass);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
         	
         });
